@@ -6,7 +6,7 @@ Slack archivebot
 This project is setup to use Yarn but NPM also works.
 yarn:
 ```
-yarn add --global git@bitbucket.org:wearefine/slack-archivebot.git
+yarn global add git@bitbucket.org:wearefine/slack-archivebot.git
 ```
 npm:
 ```
