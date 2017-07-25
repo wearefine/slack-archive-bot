@@ -12,8 +12,9 @@
   "main": "index.js",
   "author": "Charlie Pitkin",
   "license": "SEE LICENSE IN LICENSE.md",
+  "repository": "git@bitbucket.org:wearefine/slack-archivebot.git",
   "bin": {
-    "archivebot": "./bin/archivebot.js"
+    "archivebot": "./index.js"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
