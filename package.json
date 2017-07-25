@@ -14,7 +14,7 @@
   "license": "SEE LICENSE IN LICENSE.md",
   "repository": "git@bitbucket.org:wearefine/slack-archivebot.git",
   "bin": {
-    "archivebot": "./index.js"
+    "archivebot": "./bin/archivebot.js"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
