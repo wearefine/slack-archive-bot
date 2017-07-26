@@ -12,3 +12,6 @@
 
 
 * fixed typos ([d9ed72a](https://bitbucket.org/wearefine/slack-archivebot/commits/d9ed72a))
+* add new release 0.1.1 ([0e451e9](https://bitbucket.org/wearefine/slack-archivebot/commits/0e451e9))
+* fixed typos ([d9ed72a](https://bitbucket.org/wearefine/slack-archivebot/commits/d9ed72a))
+* typos in CHANGELOG.md ([b31d090](https://bitbucket.org/wearefine/slack-archivebot/commits/b31d090))
