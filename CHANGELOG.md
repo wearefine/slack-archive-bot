@@ -1,4 +1,4 @@
-## 0.1.0 (2017-07-26)
+## v0.1.0 (2017-07-26)
 
 
 * fixed yarn global install command ([5ea5f31](https://bitbucket.org/wearefine/slack-archivebot/commits/5ea5f31))
@@ -8,7 +8,7 @@
 * updated bin reference ([bd7cf78](https://bitbucket.org/wearefine/slack-archivebot/commits/bd7cf78))
 
 
-## 0.1.1 (2017-07-26)
+## v0.1.1 (2017-07-26)
 
 
 * fixed typos ([d9ed72a](https://bitbucket.org/wearefine/slack-archivebot/commits/d9ed72a))
