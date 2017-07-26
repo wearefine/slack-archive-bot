@@ -7,7 +7,7 @@
     "underscore": "^1.8.3"
   },
   "name": "slack-archivebot",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Archive old Slack channels",
   "main": "index.js",
   "author": "Charlie Pitkin <charlie@wearefine.com> (https://www.wearefine.com)",
