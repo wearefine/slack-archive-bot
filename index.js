@@ -32,10 +32,10 @@ function list(val) {
 
 program
   .version(JSON.parse(pkg).version)
-  .option('-t, --token <string>', 'Slack API bot token.')
+  .option('-t, --token <string>', 'Slack API bot token. You should probably use ARCHIVEBOT_SLACK_TOKEN as an ENV VAR.')
   .option('-d, --days [n]', 'Number of days of inactivity. Default: 30', parseInt)
-  .option('-m, --memebers [n]', 'Maximum number of members in the channnel. Default: 1', parseInt)
-  .option('-n, --never-archive [list]', 'List of channnels to never archive.', list)
+  .option('-m, --members [n]', 'Maximum number of members in the channel. Default: 1', parseInt)
+  .option('-n, --never-archive [list]', 'List of channels to never archive.', list)
   .parse(process.argv);
 
 // Sane defaults

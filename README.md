@@ -6,25 +6,25 @@ Slack archivebot
 This project is setup to use Yarn but NPM also works.
 yarn:
 ```
-yarn global add git@bitbucket.org:wearefine/slack-archivebot.git
+yarn global add slack-archivebot@bitbucket.org:wearefine/slack-archivebot.git#<latest realease>
 ```
 npm:
 ```
-npm install -g git@bitbucket.org:wearefine/slack-archivebot.git
+npm install -g slack-archivebot@bitbucket.org:wearefine/slack-archivebot.git#<latest realease>
 ```
 
 ## Usage
 
 ```
-Usage: index [options]
+Usage: slack-archivebot [options]
 
   Options:
 
     -V, --version               output the version number
-    -t, --token <string>        Slack API bot token.
+    -t, --token <string>        Slack API bot token. You should probably use ARCHIVEBOT_SLACK_TOKEN as an ENV VAR.
     -d, --days [n]              Number of days of inactivity. Default: 30
-    -m, --memebers [n]          Maximum number of members in the channnel. Default: 1
-    -n, --never-archive [list]  List of channnels to never archive.
+    -m, --members [n]          Maximum number of members in the channel. Default: 1
+    -n, --never-archive [list]  List of channels to never archive.
     -h, --help                  output usage information
 ```
 You can provide the values as arguments or env vars (listed below). The cli arguments take precedence. It is highly recommended that you put the token into an environment variable. It is setup to run anytime with a recommended run of once a day or more. 
