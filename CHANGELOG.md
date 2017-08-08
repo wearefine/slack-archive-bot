@@ -1,14 +1,19 @@
-## v0.1.1 (2017-07-26)
+## v0.2.2 (2017-08-08)
 
+* updated stdout to use console log ([4635696](https://bitbucket.org/wearefine/slack-archivebot/commits/4635696))
+
+## v0.2.1 (2017-08-08)
+
+* updated error out to use console error ([bbf6ef6](https://bitbucket.org/wearefine/slack-archivebot/commits/bbf6ef6))
+
+## v0.1.1 (2017-07-26)
 
 * fixed typos ([d9ed72a](https://bitbucket.org/wearefine/slack-archivebot/commits/d9ed72a))
 * add new release 0.1.1 ([0e451e9](https://bitbucket.org/wearefine/slack-archivebot/commits/0e451e9))
 * fixed typos ([d9ed72a](https://bitbucket.org/wearefine/slack-archivebot/commits/d9ed72a))
 * typos in CHANGELOG.md ([b31d090](https://bitbucket.org/wearefine/slack-archivebot/commits/b31d090))
 
-
 ## v0.1.0 (2017-07-26)
-
 
 * fixed yarn global install command ([5ea5f31](https://bitbucket.org/wearefine/slack-archivebot/commits/5ea5f31))
 * initial commit of the Slack archivebot ([4ff67cb](https://bitbucket.org/wearefine/slack-archivebot/commits/4ff67cb))
