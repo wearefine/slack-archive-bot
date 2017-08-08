@@ -45,7 +45,7 @@ const inactiveDays = program.days || process.env.ARCHIVEBOT_DAYS || 30;
 
 // Check the token is available
 if (!token) {
-  throw new Error(error('You must provide a Slack app token. This can be done on the command line with -t, --token or set the ARCHIVEBOT_SLACK_TOKEN environment variable'));
+  console.error((error('You must provide a Slack app token. This can be done on the command line with -t, --token or set the ARCHIVEBOT_SLACK_TOKEN environment variable')));
 }
 
 function archiveChannel() {
@@ -56,11 +56,11 @@ function archiveChannel() {
         if (err) {
           console.error((error(`Error archiving channel ${v.name} with error: ${err}`)));
         }
-        process.stdout.write(ok(`Channel ${v.name} has been archived. \n`));
+        console.log((ok(`Channel ${v.name} has been archived. \n`)));
       });
     });
   } else {
-    process.stdout.write(nothing('No channels met the archive criteia. \n'));
+    console.log((nothing('No channels met the archive criteia. \n')));
   }
 }
 
