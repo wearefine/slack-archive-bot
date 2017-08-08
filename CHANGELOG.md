@@ -1,3 +1,7 @@
+## 0.2.3 (2017-08-08)
+
+* fixed typo ([acbe2c1](https://bitbucket.org/wearefine/slack-archivebot/commits/acbe2c1))
+
 ## v0.2.2 (2017-08-08)
 
 * updated stdout to use console log ([4635696](https://bitbucket.org/wearefine/slack-archivebot/commits/4635696))
