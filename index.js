@@ -30,7 +30,7 @@ function list(val) {
 }
 
 program
-  .version('0.2.0')
+  .version('0.2.1')
   .option('-t, --token <string>', 'Slack API bot token. You should probably use ARCHIVEBOT_SLACK_TOKEN as an ENV VAR.')
   .option('-d, --days [n]', 'Number of days of inactivity. Default: 30', parseInt)
   .option('-m, --members [n]', 'Maximum number of members in the channel. Default: 1', parseInt)
@@ -54,7 +54,7 @@ function archiveChannel() {
       const channel = v.id;
       slack.channels.archive({ token, channel }, (err) => {
         if (err) {
-          throw new Error(error(`Error archiving channel ${v.name} with error: ${err}`));
+          console.error((error(`Error archiving channel ${v.name} with error: ${err}`)));
         }
         process.stdout.write(ok(`Channel ${v.name} has been archived. \n`));
       });
@@ -74,11 +74,11 @@ function filterChannels() {
 }
 
 function getHistory(channels) {
-  const inactive = _.filter(channels, (v) => {
+  inactive = _.filter(channels, (v) => {
     const channel = v.id;
     slack.channels.history({ token, channel, count }, (err, data) => {
       if (err) {
-        throw new Error(error(`Error fetching channel ${v.name} with error: ${err}`));
+        console.error((error(`Error fetching channel ${v.name} with error: ${err}`)));
       }
       if (moment.duration(now - data.messages[0].ts, 's').asDays() > inactiveDays) {
         return v;
@@ -90,7 +90,7 @@ function getHistory(channels) {
 
 slack.channels.list({ token, exclude_archived, exclude_members }, (err, data) => {
   if (err) {
-    throw new Error(error(`Error fetching channel list with error: ${err}`));
+    console.error((error(`Error fetching channel list with error: ${err}`)));
   }
   oneOrLess = _.filter(data.channels, (v) => {
     if (v.num_members <= memeberCount) {
