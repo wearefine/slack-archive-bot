@@ -15,14 +15,14 @@ const nothing = chalk.yellow;
 const now = moment().unix();
 
 // Slack API extra params
-const exclude_members = true;
-const exclude_archived = true;
+const excludeMembers = true;
+const excludeArchived = true;
 const count = 1;
 
 // Init some arrays
-let oneOrLess = [],
-  inactive = [],
-  archive = [];
+let oneOrLess = [];
+let inactive = [];
+let archive = [];
 
 // Split the string
 function list(val) {
@@ -60,7 +60,7 @@ function archiveChannel() {
       });
     });
   } else {
-    console.log((nothing('No channels met the archive criteia. \n')));
+    console.log((nothing('No channels met the archive criteria. \n')));
   }
 }
 
@@ -88,7 +88,7 @@ function getHistory(channels) {
   filterChannels();
 }
 
-slack.channels.list({ token, exclude_archived, exclude_members }, (err, data) => {
+slack.channels.list({ token, excludeArchived, excludeMembers }, (err, data) => {
   if (err) {
     console.error((error(`Error fetching channel list with error: ${err}`)));
   }
