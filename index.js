@@ -15,8 +15,8 @@ const nothing = chalk.yellow;
 const now = moment().unix();
 
 // Slack API extra params
-const excludeMembers = true;
-const excludeArchived = true;
+const exclude_members = true;
+const exclude_archived = true;
 const count = 1;
 
 // Init some arrays
@@ -88,12 +88,14 @@ function getHistory(channels) {
   filterChannels();
 }
 
-slack.channels.list({ token, excludeArchived, excludeMembers }, (err, data) => {
+slack.channels.list({ token, exclude_archived, exclude_members }, (err, data) => {
   if (err) {
     console.error((error(`Error fetching channel list with error: ${err}`)));
   }
   oneOrLess = _.filter(data.channels, (v) => {
     if (v.num_members <= memeberCount) {
+      return v;
+    } else if (v.is_archived !== false) {
       return v;
     }
   });
