@@ -1,3 +1,7 @@
+## 0.2.4 (2017-08-11)
+
+* fixed a bug in input name for channel list params ([4fd3ba1](https://bitbucket.org/wearefine/slack-archivebot/commits/4fd3ba1))
+
 ## 0.2.3 (2017-08-08)
 
 * fixed typo ([acbe2c1](https://bitbucket.org/wearefine/slack-archivebot/commits/acbe2c1))
