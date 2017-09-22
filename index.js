@@ -5,6 +5,7 @@ const _ = require('underscore');
 const moment = require('moment');
 const chalk = require('chalk');
 const program = require('commander');
+const elegantStatus = require('elegant-status');
 
 // Color output
 const error = chalk.bold.red;
@@ -23,6 +24,7 @@ const count = 1;
 let oneOrLess = [];
 let inactive = [];
 let archive = [];
+let archivedChannelNames = [];
 
 // Split the string
 function list(val) {
@@ -48,17 +50,35 @@ if (!token) {
   console.error((error('You must provide a Slack app token. This can be done on the command line with -t, --token or set the ARCHIVEBOT_SLACK_TOKEN environment variable')));
 }
 
+function logChannels () {
+  _.each(archivedChannelNames, (v) => {
+    console.log((ok(`Channel ${v} has been archived. \n`)));
+  })
+}
+
 function archiveChannel() {
+  const done = elegantStatus(`Archiving channels -- ${archive.length}`);
   if (_.size(archive) > 0) {
-    _.each(archive, (v) => {
-      const channel = v.id;
-      slack.channels.archive({ token, channel }, (err) => {
-        if (err) {
-          console.error((error(`Error archiving channel ${v.name} with error: ${err}`)));
-        }
-        console.log((ok(`Channel ${v.name} has been archived. \n`)));
-      });
-    });
+    let archiveIndex = -1;
+    let timeout = setInterval(function () {
+      ++archiveIndex
+      if (archiveIndex === archive.length) {
+        done(true);
+        clearInterval(timeout);
+      } else {
+        done.updateText(`Archiving channels -- ${archiveIndex+1}/${archive.length}`)
+        console.log(archive[archiveIndex].id);
+        let channel = archive[archiveIndex].id
+        slack.channels.archive({ token, channel }, (err) => {
+          if (err) {
+            done.updateText(error(`Error archiving channel ${channel.name} with error: ${err}`));
+            done(false);
+          }
+          archivedChannelNames.push(archive[archiveIndex].name)
+        });
+      }
+    }, 2000)
+    logChannels();
   } else {
     console.log((nothing('No channels met the archive criteria. \n')));
   }
@@ -74,23 +94,37 @@ function filterChannels() {
 }
 
 function getHistory(channels) {
-  inactive = _.filter(channels, (v) => {
-    const channel = v.id;
-    slack.channels.history({ token, channel, count }, (err, data) => {
-      if (err) {
-        console.error((error(`Error fetching channel ${v.name} with error: ${err}`)));
-      }
-      if (moment.duration(now - data.messages[0].ts, 's').asDays() > inactiveDays) {
-        return v;
-      }
-    });
-  });
-  filterChannels();
+  const done = elegantStatus(`Fetching channel history -- ${channels.length}`);
+  let channelIndex = -1;
+  let timeout = setInterval(function () {
+    ++channelIndex
+    if (channelIndex === channels.length) {
+      done(true);
+      filterChannels();
+      clearInterval(timeout)
+    } else {
+      done.updateText(`Fetching channel history -- ${channelIndex+1}/${channels.length}`)
+      let channel = channels[channelIndex].id
+      slack.channels.history({ token, channel, count }, (err, data) => {
+        if (err) {
+          done.updateText(error(`Error fetching channel ${channel.name} with error: ${err}`));
+          done(false);
+        }
+        if (moment.duration(now - data.messages[0].ts, 's').asDays() > inactiveDays) {
+          data.id = channels[channelIndex].id
+          data.name = channels[channelIndex].name
+          inactive.push(data)
+        }
+      })
+    }
+  }, 2000);
 }
 
 slack.channels.list({ token, exclude_archived, exclude_members }, (err, data) => {
+  const done = elegantStatus('Fetching Slack channels');
   if (err) {
-    console.error((error(`Error fetching channel list with error: ${err}`)));
+    done.updateText((error(`Error fetching channel list with error: ${err}`)));
+    done(false)
   }
   oneOrLess = _.filter(data.channels, (v) => {
     if (v.num_members <= memeberCount) {
@@ -99,5 +133,6 @@ slack.channels.list({ token, exclude_archived, exclude_members }, (err, data) =>
       return v;
     }
   });
+  done(true)
   getHistory(data.channels);
 });

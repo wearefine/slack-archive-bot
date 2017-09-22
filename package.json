@@ -1,7 +1,9 @@
 {
   "dependencies": {
+    "async": "^2.5.0",
     "chalk": "^2.0.1",
     "commander": "^2.11.0",
+    "elegant-status": "^1.1.0",
     "moment": "^2.18.1",
     "slack": "^8.3.1",
     "underscore": "^1.8.3"
