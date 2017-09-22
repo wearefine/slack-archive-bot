@@ -1,3 +1,7 @@
+## 0.3.0 (2017-09-22)
+
+* refactored the code so requests are throttled to 1 per 2 sec ([96ef01f](https://bitbucket.org/wearefine/slack-archivebot/commits/96ef01f))
+
 ## 0.2.4 (2017-08-11)
 
 * fixed a bug in input name for channel list params ([4fd3ba1](https://bitbucket.org/wearefine/slack-archivebot/commits/4fd3ba1))
