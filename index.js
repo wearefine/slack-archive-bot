@@ -32,7 +32,7 @@ function list(val) {
 }
 
 program
-  .version('0.3.0')
+  .version('0.3.1')
   .option('-t, --token <string>', 'Slack API bot token. You should probably use ARCHIVEBOT_SLACK_TOKEN as an ENV VAR.')
   .option('-d, --days [n]', 'Number of days of inactivity. Default: 30', parseInt)
   .option('-m, --members [n]', 'Maximum number of members in the channel. Default: 1', parseInt)
@@ -59,7 +59,7 @@ function logChannels () {
 }
 
 function archiveChannel() {
-  const done
+  let done
   if (!basic) {
     done = elegantStatus(`Archiving channels -- ${archive.length}`);
   }
@@ -73,7 +73,9 @@ function archiveChannel() {
         }
         clearInterval(timeout);
       } else {
-        done.updateText(`Archiving channels -- ${archiveIndex+1}/${archive.length}`)
+        if (!basic) {
+          done.updateText(`Archiving channels -- ${archiveIndex+1}/${archive.length}`)
+        }
         console.log(archive[archiveIndex].id);
         let channel = archive[archiveIndex].id
         slack.channels.archive({ token, channel }, (err) => {
@@ -105,7 +107,7 @@ function filterChannels() {
 }
 
 function getHistory(channels) {
-  const done
+  let done
   if (!basic) {
     done = elegantStatus(`Fetching channel history -- ${channels.length}`);
   }
@@ -119,7 +121,9 @@ function getHistory(channels) {
       filterChannels();
       clearInterval(timeout)
     } else {
-      done.updateText(`Fetching channel history -- ${channelIndex+1}/${channels.length}`)
+      if (!basic) {
+        done.updateText(`Fetching channel history -- ${channelIndex+1}/${channels.length}`)
+      }
       let channel = channels[channelIndex].id
       slack.channels.history({ token, channel, count }, (err, data) => {
         if (err) {
@@ -141,9 +145,9 @@ function getHistory(channels) {
 }
 
 slack.channels.list({ token, exclude_archived, exclude_members }, (err, data) => {
-  const done
+  let done
   if (!basic) {
-    done = elegantStatus('Fetching Slack channels');
+    done = elegantStatus('Fetching Slack channels')
   }
   if (err) {
     if (!basic) {
