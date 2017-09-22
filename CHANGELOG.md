@@ -1,12 +1,18 @@
-## 0.3.0 (2017-09-22)
+## v0.3.1 (2017-09-22)
+
+* forgot to save the changes ([f799bbc](https://bitbucket.org/wearefine/slack-archivebot/commits/f799bbc913754ecd11e3f0105ec56605c1afccf8))
+* added a -b --basic option so allow for basic stdout for cron and ci
+ ([ac2e2b0](https://bitbucket.org/wearefine/slack-archivebot/commits/ac2e2b044c70bacbcfaabd00b0e9a535f8932318))
+
+## v0.3.0 (2017-09-22)
 
 * refactored the code so requests are throttled to 1 per 2 sec ([96ef01f](https://bitbucket.org/wearefine/slack-archivebot/commits/96ef01f))
 
-## 0.2.4 (2017-08-11)
+## v0.2.4 (2017-08-11)
 
 * fixed a bug in input name for channel list params ([4fd3ba1](https://bitbucket.org/wearefine/slack-archivebot/commits/4fd3ba1))
 
-## 0.2.3 (2017-08-08)
+## v0.2.3 (2017-08-08)
 
 * fixed typo ([acbe2c1](https://bitbucket.org/wearefine/slack-archivebot/commits/acbe2c1))
 
