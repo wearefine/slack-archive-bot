@@ -37,6 +37,7 @@ program
   .option('-d, --days [n]', 'Number of days of inactivity. Default: 30', parseInt)
   .option('-m, --members [n]', 'Maximum number of members in the channel. Default: 1', parseInt)
   .option('-n, --never-archive [list]', 'List of channels to never archive.', list)
+  .option('-b, --basic', 'Only prints basic log messages. For use the cron or ci systems.')
   .parse(process.argv);
 
 // Sane defaults
@@ -44,6 +45,7 @@ const token = program.token || process.env.ARCHIVEBOT_SLACK_TOKEN;
 const memeberCount = program.members || process.env.ARCHIVEBOT_MEMBERS || 1;
 const neverArchive = program['never-archive'] || process.env.ARCHIVEBOT_NEVER_ARCHIVE || [];
 const inactiveDays = program.days || process.env.ARCHIVEBOT_DAYS || 30;
+const basic = program.basic || process.env.ARCHIVEBOT_BASIC || false;
 
 // Check the token is available
 if (!token) {
@@ -57,13 +59,18 @@ function logChannels () {
 }
 
 function archiveChannel() {
-  const done = elegantStatus(`Archiving channels -- ${archive.length}`);
+  const done
+  if (!basic) {
+    done = elegantStatus(`Archiving channels -- ${archive.length}`);
+  }
   if (_.size(archive) > 0) {
     let archiveIndex = -1;
     let timeout = setInterval(function () {
       ++archiveIndex
       if (archiveIndex === archive.length) {
-        done(true);
+        if (!basic) {
+          done(true);
+        }
         clearInterval(timeout);
       } else {
         done.updateText(`Archiving channels -- ${archiveIndex+1}/${archive.length}`)
@@ -71,8 +78,12 @@ function archiveChannel() {
         let channel = archive[archiveIndex].id
         slack.channels.archive({ token, channel }, (err) => {
           if (err) {
-            done.updateText(error(`Error archiving channel ${channel.name} with error: ${err}`));
-            done(false);
+            if (!basic) {
+              done.updateText(error(`Error archiving channel ${channel.name} with error: ${err}`));
+              done(false);
+            } else {
+              console.error(error(`Error archiving channel ${channel.name} with error: ${err}`));
+            }
           }
           archivedChannelNames.push(archive[archiveIndex].name)
         });
@@ -94,12 +105,17 @@ function filterChannels() {
 }
 
 function getHistory(channels) {
-  const done = elegantStatus(`Fetching channel history -- ${channels.length}`);
+  const done
+  if (!basic) {
+    done = elegantStatus(`Fetching channel history -- ${channels.length}`);
+  }
   let channelIndex = -1;
   let timeout = setInterval(function () {
     ++channelIndex
     if (channelIndex === channels.length) {
-      done(true);
+      if (!basic) {
+        done(true);
+      }
       filterChannels();
       clearInterval(timeout)
     } else {
@@ -107,8 +123,12 @@ function getHistory(channels) {
       let channel = channels[channelIndex].id
       slack.channels.history({ token, channel, count }, (err, data) => {
         if (err) {
-          done.updateText(error(`Error fetching channel ${channel.name} with error: ${err}`));
-          done(false);
+          if (!basic) {
+            done.updateText(error(`Error fetching channel ${channel.name} with error: ${err}`));
+            done(false);
+          } else {
+            console.log(error(`Error fetching channel ${channel.name} with error: ${err}`));
+          }
         }
         if (moment.duration(now - data.messages[0].ts, 's').asDays() > inactiveDays) {
           data.id = channels[channelIndex].id
@@ -121,10 +141,17 @@ function getHistory(channels) {
 }
 
 slack.channels.list({ token, exclude_archived, exclude_members }, (err, data) => {
-  const done = elegantStatus('Fetching Slack channels');
+  const done
+  if (!basic) {
+    done = elegantStatus('Fetching Slack channels');
+  }
   if (err) {
-    done.updateText((error(`Error fetching channel list with error: ${err}`)));
-    done(false)
+    if (!basic) {
+      done.updateText(error(`Error fetching channel list with error: ${err}`));
+      done(false)
+    } else {
+      console.error(error(`Error fetching channel list with error: ${err}`));
+    }
   }
   oneOrLess = _.filter(data.channels, (v) => {
     if (v.num_members <= memeberCount) {
@@ -133,6 +160,8 @@ slack.channels.list({ token, exclude_archived, exclude_members }, (err, data) =>
       return v;
     }
   });
-  done(true)
+  if (!basic) {
+    done(true)
+  }
   getHistory(data.channels);
 });

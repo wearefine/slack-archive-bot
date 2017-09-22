@@ -28,8 +28,9 @@ Usage: slack-archivebot [options]
     -V, --version               output the version number
     -t, --token <string>        Slack API bot token. You should probably use ARCHIVEBOT_SLACK_TOKEN as an ENV VAR.
     -d, --days [n]              Number of days of inactivity. Default: 30
-    -m, --members [n]          Maximum number of members in the channel. Default: 1
+    -m, --members [n]           Maximum number of members in the channel. Default: 1
     -n, --never-archive [list]  List of channels to never archive.
+    -q, --basic                 Only prints basic log messages. For use the cron or ci systems.
     -h, --help                  output usage information
 ```
 You can provide the values as arguments or env vars (listed below). The cli arguments take precedence. It is highly recommended that you put the token into an environment variable. It is setup to run anytime with a recommended run of once a day or less. 
@@ -42,6 +43,8 @@ ARCHIVEBOT_MEMBERS=The minimum number of members a channel can have to archive
 ARCHIVEBOT_DAYS=The number of days of inactivity
 
 ARCHIVEBOT_NEVER_ARCHIVE=Comma delimited list of channels to never archive
+
+ARCHIVEBOT_BASIC=true || false
 
 ## Rate limits
 
