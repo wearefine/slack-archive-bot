@@ -9,17 +9,16 @@
     "underscore": "^1.8.3"
   },
   "name": "slack-archivebot",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Archive old Slack channels",
   "main": "index.js",
   "author": "FINE (https://www.wearefine.com)",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@bitbucket.org/wearefine/slack-archivebot.git"
+    "url": "https://github.com/wearefine/slack-archive-bot.git"
   },
-  "homepage": "https://bitbucket.org/wearefine/slack-archivebot.git#readme",
-  "private": true,
+  "homepage": "https://github.com/wearefine/slack-archive-bot",
   "bin": {
     "slack-archivebot": "./index.js"
   },
