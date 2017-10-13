@@ -1,40 +1,52 @@
-## v0.3.1 (2017-09-22)
+# Changelog
+All notable changes to this project will be documented in this file.
 
-* forgot to save the changes ([f799bbc](https://bitbucket.org/wearefine/slack-archivebot/commits/f799bbc913754ecd11e3f0105ec56605c1afccf8))
-* added a -b --basic option so allow for basic stdout for cron and ci
- ([ac2e2b0](https://bitbucket.org/wearefine/slack-archivebot/commits/ac2e2b044c70bacbcfaabd00b0e9a535f8932318))
+The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
+and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## v0.3.0 (2017-09-22)
+## [Unreleased]
 
-* refactored the code so requests are throttled to 1 per 2 sec ([96ef01f](https://bitbucket.org/wearefine/slack-archivebot/commits/96ef01f))
+## [v0.3.2] - 2017-10-13
+### Added
+- LICENSE
+- `-b, --basic` option default setting documentation
 
-## v0.2.4 (2017-08-11)
+### Changed
+- README and help documentation for the `-b, --basic` option to reflect what the option is used for
+- CHANGELOG format
+- Updated Yarn and NPM install methods to pull from NPM
 
-* fixed a bug in input name for channel list params ([4fd3ba1](https://bitbucket.org/wearefine/slack-archivebot/commits/4fd3ba1))
+## v0.3.1 - 2017-09-22
+### Added
+- added a -b --basic option so allow for basic stdout for cron and task runner tools
 
-## v0.2.3 (2017-08-08)
+## v0.3.0 - 2017-09-22
+### Changed
+ - refactored the code so requests are throttled to 1 per 2 sec
 
-* fixed typo ([acbe2c1](https://bitbucket.org/wearefine/slack-archivebot/commits/acbe2c1))
+## v0.2.4 - 2017-08-11
+### Fixed
+- fixed a bug in input name for channel list params
 
-## v0.2.2 (2017-08-08)
+## v0.2.3 - 2017-08-08
+### Fixed
+- Fix typos in recent README changes
 
-* updated stdout to use console log ([4635696](https://bitbucket.org/wearefine/slack-archivebot/commits/4635696))
+## v0.2.2 - 2017-08-08
+### Changed
+- updated stdout to use console log
 
-## v0.2.1 (2017-08-08)
+## v0.2.1 - 2017-08-08
+### Changed
+- updated error out to use console error
 
-* updated error out to use console error ([bbf6ef6](https://bitbucket.org/wearefine/slack-archivebot/commits/bbf6ef6))
+## v0.1.1 - 2017-07-26
+### Changed
+- Fixed typos all over
 
-## v0.1.1 (2017-07-26)
+## v0.1.0 - 2017-07-26
+### Added
+- All the things
 
-* fixed typos ([d9ed72a](https://bitbucket.org/wearefine/slack-archivebot/commits/d9ed72a))
-* add new release 0.1.1 ([0e451e9](https://bitbucket.org/wearefine/slack-archivebot/commits/0e451e9))
-* fixed typos ([d9ed72a](https://bitbucket.org/wearefine/slack-archivebot/commits/d9ed72a))
-* typos in CHANGELOG.md ([b31d090](https://bitbucket.org/wearefine/slack-archivebot/commits/b31d090))
-
-## v0.1.0 (2017-07-26)
-
-* fixed yarn global install command ([5ea5f31](https://bitbucket.org/wearefine/slack-archivebot/commits/5ea5f31))
-* initial commit of the Slack archivebot ([4ff67cb](https://bitbucket.org/wearefine/slack-archivebot/commits/4ff67cb))
-* refs #68944 added a README.md ([4af2620](https://bitbucket.org/wearefine/slack-archivebot/commits/4af2620))
-* updated bin config ([e17608f](https://bitbucket.org/wearefine/slack-archivebot/commits/e17608f))
-* updated bin reference ([bd7cf78](https://bitbucket.org/wearefine/slack-archivebot/commits/bd7cf78))
+[Unreleased]: https://github.com/wearefine/slack-archive-bot/compare/v0.3.1...HEAD
+[v0.3.2]: https://github.com/wearefine/slack-archive-bot/compare/v0.3.1...v0.3.2

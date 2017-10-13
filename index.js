@@ -37,7 +37,7 @@ program
   .option('-d, --days [n]', 'Number of days of inactivity. Default: 30', parseInt)
   .option('-m, --members [n]', 'Maximum number of members in the channel. Default: 1', parseInt)
   .option('-n, --never-archive [list]', 'List of channels to never archive.', list)
-  .option('-b, --basic', 'Only prints basic log messages. For use the cron or ci systems.')
+  .option('-b, --basic', 'Only prints basic log messages. For use with cron or task runners. Default: false')
   .parse(process.argv);
 
 // Sane defaults
