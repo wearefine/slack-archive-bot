@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [v0.3.3] - 2017-10-13
+### Changed
+- Removed `Private` flag in package.json to publish to NPM
+
 ## [v0.3.2] - 2017-10-13
 ### Added
 - LICENSE
@@ -48,5 +52,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - All the things
 
-[Unreleased]: https://github.com/wearefine/slack-archive-bot/compare/v0.3.1...HEAD
+[Unreleased]: https://github.com/wearefine/slack-archive-bot/compare/v0.3.3...HEAD
+[v0.3.3]: https://github.com/wearefine/slack-archive-bot/compare/v0.3.2...v0.3.3
 [v0.3.2]: https://github.com/wearefine/slack-archive-bot/compare/v0.3.1...v0.3.2
