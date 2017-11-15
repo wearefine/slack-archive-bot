@@ -49,3 +49,22 @@ ARCHIVEBOT_BASIC=true || false
 ## Rate limits
 
 Due to Slack's strict rate limit and given that several requests need to be made per channel. The script will run each request at a rate of 1 request per 2 seconds. This will help avoid the rate limit that Slack imposes of roughly 1 req/s. Don’t run the cli more than once every hour to avoid rate limits.
+
+## Docker
+
+There is now a Dockerfile that can be used to build a container to run the cli.
+
+Using environment variables
+```bash
+docker run --rm -d \
+-e ARCHIVEBOT_NEVER_ARCHIVE=$ARCHIVEBOT_NEVER_ARCHIVE \
+-e ARCHIVEBOT_SLACK_TOKEN=$ARCHIVEBOT_SLACK_TOKEN \
+-e ARCHIVEBOT_INACTIVITY_DAYS=$ARCHIVEBOT_INACTIVITY_DAYS \
+slack-archivebot
+```
+
+Using flags
+```bash
+docker run --rm -d \
+slack-archivebot -n "test" -t abc123 -d 60
+```
