@@ -25,6 +25,12 @@
   "bin": {
     "slack-archivebot": "./index.js"
   },
+  "keywords": [
+    "slack",
+    "archive",
+    "cli",
+    "automation"
+  ],
   "devDependencies": {
     "babel-eslint": "^7.2.3",
     "eslint": "^4.3.0",
