@@ -1,0 +1,19 @@
+FROM node:boron-alpine
+
+ENV APP /app
+ENV ARCHIVEBOT_SLACK_TOKEN ''
+ENV ARCHIVEBOT_MEMBERS 1
+ENV ARCHIVEBOT_DAYS 30
+ENV ARCHIVEBOT_NEVER_ARCHIVE ''
+ENV ARCHIVEBOT_BASIC false
+
+WORKDIR $APP
+
+ADD package.json .
+ADD yarn.lock .
+
+RUN yarn
+
+ADD . .
+
+ENTRYPOINT ["yarn", "start"]

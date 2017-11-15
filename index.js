@@ -6,6 +6,7 @@ const moment = require('moment');
 const chalk = require('chalk');
 const program = require('commander');
 const elegantStatus = require('elegant-status');
+const pkgVersion = require('./package.json').version;
 
 // Color output
 const error = chalk.bold.red;
@@ -32,7 +33,7 @@ function list(val) {
 }
 
 program
-  .version('0.3.1')
+  .version(pkgVersion)
   .option('-t, --token <string>', 'Slack API bot token. You should probably use ARCHIVEBOT_SLACK_TOKEN as an ENV VAR.')
   .option('-d, --days [n]', 'Number of days of inactivity. Default: 30', parseInt)
   .option('-m, --members [n]', 'Maximum number of members in the channel. Default: 1', parseInt)
@@ -76,7 +77,6 @@ function archiveChannel() {
         if (!basic) {
           done.updateText(`Archiving channels -- ${archiveIndex+1}/${archive.length}`)
         }
-        console.log(archive[archiveIndex].id);
         let channel = archive[archiveIndex].id
         slack.channels.archive({ token, channel }, (err) => {
           if (err) {

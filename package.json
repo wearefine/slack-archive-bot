@@ -9,7 +9,7 @@
     "underscore": "^1.8.3"
   },
   "name": "slack-archivebot",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "Archive old Slack channels",
   "main": "index.js",
   "author": "FINE (https://www.wearefine.com)",
@@ -19,6 +19,9 @@
     "url": "https://github.com/wearefine/slack-archive-bot.git"
   },
   "homepage": "https://github.com/wearefine/slack-archive-bot",
+  "scripts": {
+    "start": "node ./index.js"
+  },
   "bin": {
     "slack-archivebot": "./index.js"
   },
