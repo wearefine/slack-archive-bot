@@ -1,0 +1,16 @@
+{
+  "ok": true,
+  "latest": "1525711663329",
+  "messages": [
+    {
+      "text": "",
+      "bot_id": "B951991NC",
+      "attachments": [
+        {}
+      ],
+      "type": "message",
+      "subtype": "bot_message",
+      "ts": "1525698330.000450"
+    }
+  ]
+}
