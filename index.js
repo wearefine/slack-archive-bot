@@ -20,6 +20,8 @@ const now = moment().unix();
 const exclude_members = true;
 const exclude_archived = true;
 const count = 1;
+const inclusive = true;
+const latest = moment.now();
 
 // Init some arrays
 let oneOrLess = [];
@@ -109,7 +111,7 @@ function filterChannels() {
 function getHistory(channels) {
   let done
   if (!basic) {
-    done = elegantStatus(`Fetching channel history -- ${channels.length}`);
+    done = elegantStatus(`Fetching channel history for ${channels.length} channel(s)`);
   }
   let channelIndex = -1;
   let timeout = setInterval(function () {
@@ -125,13 +127,13 @@ function getHistory(channels) {
         done.updateText(`Fetching channel history -- ${channelIndex+1}/${channels.length}`)
       }
       let channel = channels[channelIndex].id
-      slack.channels.history({ token, channel, count }, (err, data) => {
+      slack.channels.history({ token, channel, count, inclusive, latest }, (err, data) => {
         if (err) {
           if (!basic) {
-            done.updateText(error(`Error fetching channel ${channel.name} with error: ${err}`));
+            done.updateText(error(`Error fetching channel ${channel.name} with ${err}`));
             done(false);
           } else {
-            console.log(error(`Error fetching channel ${channel.name} with error: ${err}`));
+            console.error(error(`Error fetching channel ${channel.name} with ${err}`));
           }
         }
         if (moment.duration(now - data.messages[0].ts, 's').asDays() > inactiveDays) {
@@ -167,5 +169,5 @@ slack.channels.list({ token, exclude_archived, exclude_members }, (err, data) =>
   if (!basic) {
     done(true)
   }
-  getHistory(data.channels);
+  getHistory(oneOrLess);
 });
