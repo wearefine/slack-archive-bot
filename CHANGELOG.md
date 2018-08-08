@@ -11,6 +11,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Unfiltered channels were getting added back to filtered when user count was greater than 2.
 
+### Updated
+
+- Standard.js formatting
+
+### Removed
+
+- Eslint
+
 ## [v0.4.0] - 6-1-2018
 
 ### Fixed
