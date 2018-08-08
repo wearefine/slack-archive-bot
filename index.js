@@ -100,7 +100,7 @@ function archiveChannel() {
 }
 
 function filterChannels() {
-  archive = _.filter(oneOrLess.concat(inactive), (v) => {
+  archive = _.filter(inactive, (v) => {
     if (!_.contains(neverArchive, v.name)) {
       return v;
     }
@@ -136,7 +136,8 @@ function getHistory(channels) {
             console.error(error(`Error fetching channel ${channel.name} with ${err}`));
           }
         }
-        if (moment.duration(now - data.messages[0].ts, 's').asDays() > inactiveDays) {
+        let duration = moment.duration(now - data.messages[0].ts, 's').asDays();
+        if (duration > inactiveDays) {
           data.id = channels[channelIndex].id
           data.name = channels[channelIndex].name
           inactive.push(data)
